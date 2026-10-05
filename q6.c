@@ -1,32 +1,37 @@
-#include <bits/stdc++.h>
-using namespace std;
-int frequency(int n, int a, int b)
-{
-    int freq_a = 0, freq_b = 0;
-    if (n == 0)
-    {
-        if (a == 0)
-            freq_a++;
-        if (b == 0)
-            freq_b++;
-    }
-    else
-    {
-        while (n != 0)
-        {
-            if (n % 10 == a)
-                freq_a++;
-            else if (n % 10 == b)
-                freq_b++;
+#include <stdio.h>
+#include <stdlib.h>
 
+int digitFrequencyDifference(int n, int a, int b) {
+    int count_a = 0;
+    int count_b = 0;
+
+    if (n == 0) {
+        if (a == 0) {
+            count_a++;
+        }
+        if (b == 0) {
+            count_b++;
+        }
+    } else {
+        while (n > 0) {
+            int digit = n % 10;
+            if (digit == a) {
+                count_a++;
+            }
+            if (digit == b) {
+                count_b++;
+            }
             n /= 10;
         }
-        
     }
-    return abs(freq_b - freq_a);
+
+    return abs(count_a - count_b);
 }
-int main()
-{
-    cout << frequency(0, 0, 5);
+
+int main() {
+    int n, a, b;
+    if (scanf("%d %d %d", &n, &a, &b) == 3) {
+        printf("%d\n", digitFrequencyDifference(n, a, b));
+    }
     return 0;
 }
